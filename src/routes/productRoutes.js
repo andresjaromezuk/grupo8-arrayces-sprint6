@@ -24,7 +24,7 @@ const productEditValidation = require('../middleware/productEditValidation')
 /* Creamos la ruta hacia formulario de creación */
 router.get('/create', /* adminMiddleware, */ productController.create)
 /* Ruta para recibir datos del formulario */ 
-/* router.post('/', upload.array('image'), productCreateValidation, productController.store); */
+router.post('/', upload.array('image'), productCreateValidation, productController.store);
 
 /* Creamos la ruta hacia formulario de edición */
 /* router.get('/edit/:id', adminMiddleware, productController.edit); */

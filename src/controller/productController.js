@@ -26,12 +26,9 @@ const productController = {
         res.render("products/create")
     },
 
-	store: (req, res) => {
-
-        let {name, description, type, size, price, fees, category} = req.body
-
-
-		let files = req.files
+	store: async (req, res) => {
+        
+        let files = req.files
         
         const errors = validationResult(req)
 
@@ -49,12 +46,41 @@ const productController = {
             })
 		} 
 
+        let {name, description, type, size, price, fees, category} = req.body
+
+        let imagesProducts = [];
+
+        let objAux={
+            name: name,
+            description: description,
+            typeId: type,
+            sizeId: size,
+            price: price,
+            feeId: fees,
+            categoryId: category
+        }
+
+        //Acá arranca el problema. ( code: 'ERR_HTTP_HEADERS_SENT')
+
+        try {
+            let newProduct = await Product.create(objAux)
+            console.log(newProduct)
+        } catch (error) {
+            res.json(error.msg)
+        }
+
+        res.redirect('/products/create')
+
+    
+
+		
 
 
 
 
 
-		let images = []
+
+		/* let images = []
 		
 
 		// cambiamos ciclo for por forEach
@@ -70,7 +96,7 @@ const productController = {
 
 		productModel.create(newProduct)
 		res.redirect('/products')
-
+ */
 	},
 
     /* edit: (req, res) => {
