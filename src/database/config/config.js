@@ -9,4 +9,5 @@ module.exports = {
   port: process.env.DB_PORT,
   dialect: process.env.DB_DIALECT
   }
+
 }
