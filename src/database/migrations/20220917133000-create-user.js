@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      avatar: {
+        type: Sequelize.STRING
+      },
       firstName: {
         type: Sequelize.STRING
       },
@@ -26,11 +29,12 @@ module.exports = {
       confirmPassword: {
         type: Sequelize.STRING
       },
-      userCategoryId: {
-        type: Sequelize.INTEGER
-      },
-      avatarId: {
-        type: Sequelize.INTEGER
+      roleId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "roles",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,

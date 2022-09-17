@@ -27,16 +27,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       typeId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "types",
+          key: "id"
+        }
       },
       sizeId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "sizes",
+          key: "id"
+        }
       },
-      feesId: {
-        type: Sequelize.INTEGER
+      feeId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "fees",
+          key: "id"
+        }
       },
-      productCategoryId: {
-        type: Sequelize.INTEGER
+      categoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "categories",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,

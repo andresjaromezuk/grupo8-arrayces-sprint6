@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Role)
     }
   }
   user.init({
+    avatar: DataTypes.STRING,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     userName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     confirmPassword: DataTypes.STRING,
-    userCategoryId: DataTypes.INTEGER,
-    avatarId: DataTypes.INTEGER
+    roleId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'user',
