@@ -57,19 +57,24 @@ const productController = {
             sizeId: size,
             price: price,
             feeId: fees,
-            categoryId: category
+            categoryId: category,
+            stock: null,
+            stockMin: null,
+            stockMax: null,
         }
+
+        console.log(objAux)
 
         //Acá arranca el problema. ( code: 'ERR_HTTP_HEADERS_SENT')
 
         try {
             let newProduct = await Product.create(objAux)
-            console.log(newProduct)
+             return res.redirect('/products/create')
         } catch (error) {
-            res.json(error.msg)
+             res.json(error.msg)
         }
 
-        res.redirect('/products/create')
+       
 
     
 

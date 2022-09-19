@@ -32,9 +32,9 @@
             <!-- <input type="text" name="type" id="type" required> -->
             <select name="type">
                <option value=""> Elegí </option>
-               <option value="planta" <%= locals.oldData && oldData.type == "planta" ? "selected" : null %>> Planta </option>
-               <option value="maceta" <%= locals.oldData && oldData.type == "maceta" ? "selected" : null %>> Maceta </option>
-               <option value="cuidados" <%= locals.oldData && oldData.type == "cuidados" ? "selected" : null %>> Tips y cuidados </option>
+               <option value="1" <%= locals.oldData && oldData.type == "planta" ? "selected" : null %>> Planta </option>
+               <option value="2" <%= locals.oldData && oldData.type == "maceta" ? "selected" : null %>> Maceta </option>
+               <option value="3" <%= locals.oldData && oldData.type == "cuidados" ? "selected" : null %>> Tips y cuidados </option>
             </select>
             <% if (locals.errors && errors.type) { %>
                <p class="errorStyle"> <%= errors.type.msg %> </p>
@@ -42,10 +42,10 @@
             <label>Tamaño</label>
             <select name="size">
                <option value=""> Elegí </option>
-               <option value="small" <%= locals.oldData && oldData.size == "small" ? "selected" : null %>> S (Small) </option>
-               <option value="medium" <%= locals.oldData && oldData.size == "medium" ? "selected" : null %>> M (Medium) </option>
-               <option value="large" <%= locals.oldData && oldData.size == "large" ? "selected" : null %>> L (Large) </option>
-               <option value="extra-large" <%= locals.oldData && oldData.size == "extra-large" ? "selected" : null %>> XL (Extra Large) </option>
+               <option value="1" <%= locals.oldData && oldData.size == "small" ? "selected" : null %>> S (Small) </option>
+               <option value="2" <%= locals.oldData && oldData.size == "medium" ? "selected" : null %>> M (Medium) </option>
+               <option value="3" <%= locals.oldData && oldData.size == "large" ? "selected" : null %>> L (Large) </option>
+               <option value="4" <%= locals.oldData && oldData.size == "extra-large" ? "selected" : null %>> XL (Extra Large) </option>
             </select>
             <% if (locals.errors && errors.size) { %>
                <p class="errorStyle"> <%= errors.size.msg %> </p>
@@ -64,10 +64,10 @@
                <label>Categoría</label>
                <select name="category">
                   <option value=""> Elegí </option>
-                  <option value="visited" <%= locals.oldData && oldData.category == "visited" ? "selected" : null %>> Últimos visitados </option>
-                  <option value="inSale" <%= locals.oldData && oldData.category == "inSale" ? "selected" : null %>> En oferta </option>
-                  <option value="featured" <%= locals.oldData && oldData.category == "featured" ? "selected" : null %>> Elegidos del mes </option>
-                  <option value="general" <%= locals.oldData && oldData.category == "general" ? "selected" : null %>> Productos </option>
+                  <option value="1" <%= locals.oldData && oldData.category == "visited" ? "selected" : null %>> Últimos visitados </option>
+                  <option value="2" <%= locals.oldData && oldData.category == "inSale" ? "selected" : null %>> En oferta </option>
+                  <option value="3" <%= locals.oldData && oldData.category == "featured" ? "selected" : null %>> Elegidos del mes </option>
+                  <option value="4" <%= locals.oldData && oldData.category == "general" ? "selected" : null %>> Productos </option>
                </select>
                <% if (locals.errors && errors.category) { %>
                   <p class="errorStyle"> <%= errors.category.msg %> </p>

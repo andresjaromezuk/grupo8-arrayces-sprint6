@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Fee);
       this.belongsTo(models.Type);
       this.belongsTo(models.Size);
+
     }
   }
   Product.init({
