@@ -266,7 +266,6 @@ const productController = {
         } catch (error) {
             res.json(error)
         }
-        
     },
 
 	update: async (req, res) => {
@@ -389,13 +388,7 @@ const productController = {
         } catch (error) {
             res.json(error)
         }
-
-        
     }
 }
-
-
-
-
 
 module.exports = productController
