@@ -11,9 +11,16 @@ const productCreateValidation = [
     
     body('price')
         .notEmpty().withMessage('Debes indicar un precio'),
-
+    
     body('fees')
-        .notEmpty().withMessage('Debes indicar el valor de cada cuota'),
+        .custom((value, {req}) => {
+            if(req.body.fees == ""){
+                throw new Error ('Debes indicar el valor de cada cuota')
+            }
+        
+            return true
+
+        }),
     
     body('type')
         .custom((value, {req}) => {

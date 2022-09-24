@@ -1,15 +1,26 @@
-/* const path = require('path');
-const fs = require('fs');
+const {Product} = require("../database/models")
 
-let productos = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../dataBase/products.json'), 'utf8'))
+/* const path = require('path'); */
+/* const fs = require('fs'); */
+
 
 const mainController = {
 
-    index: function (req, res){
+    index: async  (req, res) => {
         //compartimos los datos de los productos a la vista
-        res.render("products/index", {productos : productos}) 
+
+        const  include = ['Type', 'Size', 'Category', 'Images', 'Fee']
+
+        try {
+            let products = await Product.findAll({include})
+            return res.render("products/index", {products})
+        } catch (error) {
+            res.json(error)
+        }
+
+         
     }
 
 }
 
-module.exports = mainController */
+module.exports = mainController

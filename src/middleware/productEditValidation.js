@@ -11,9 +11,6 @@ const productEditValidation = [
     
     body('price')
         .notEmpty().withMessage('Debes indicar un precio'),
-
-    body('fees')
-        .notEmpty().withMessage('Debes indicar el valor de cada cuota'),
         
     body('image')
         .custom((value, {req}) => {

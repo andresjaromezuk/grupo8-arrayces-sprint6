@@ -12,9 +12,9 @@
         <section class="productsView">
             <h2>Nuestros elegidos del mes</h2>
             <div class="products">
-                <% productos.forEach(producto => { 
-                    if (producto.category==="featured") { %>
-                        <%- include('../partials/article.ejs',{producto}) %> 
+                <% products.forEach(product => { 
+                    if (product.Category.name==="featured") { %>
+                        <%- include('../partials/article.ejs',{product}) %> 
                     <% }
                 }) %>
             </div>

@@ -5,7 +5,7 @@
 
 <body>
 
-   <%- include('../partials/headerAdmin.ejs') %> 
+   <%- include('../partials/headerAdmin.ejs') %>  
 
    <main class="createMain">
       <h2>Crear producto</h2>
@@ -32,9 +32,9 @@
             <!-- <input type="text" name="type" id="type" required> -->
             <select name="type">
                <option value=""> Elegí </option>
-               <option value="1" <%= locals.oldData && oldData.type == "planta" ? "selected" : null %>> Planta </option>
-               <option value="2" <%= locals.oldData && oldData.type == "maceta" ? "selected" : null %>> Maceta </option>
-               <option value="3" <%= locals.oldData && oldData.type == "cuidados" ? "selected" : null %>> Tips y cuidados </option>
+               <% types.forEach(type => { %>
+                  <option value="<%= type.id %> " <%= locals.oldData && oldData.type == type.id ? "selected" : null %>> <%= type.name %>  </option>
+               <% }) %>
             </select>
             <% if (locals.errors && errors.type) { %>
                <p class="errorStyle"> <%= errors.type.msg %> </p>
@@ -42,10 +42,9 @@
             <label>Tamaño</label>
             <select name="size">
                <option value=""> Elegí </option>
-               <option value="1" <%= locals.oldData && oldData.size == "small" ? "selected" : null %>> S (Small) </option>
-               <option value="2" <%= locals.oldData && oldData.size == "medium" ? "selected" : null %>> M (Medium) </option>
-               <option value="3" <%= locals.oldData && oldData.size == "large" ? "selected" : null %>> L (Large) </option>
-               <option value="4" <%= locals.oldData && oldData.size == "extra-large" ? "selected" : null %>> XL (Extra Large) </option>
+               <% sizes.forEach(size => { %>
+                  <option value="<%= size.id %> " <%= locals.oldData && oldData.size == size.id ? "selected" : null %>> <%= size.name %>  </option>
+               <% }) %>
             </select>
             <% if (locals.errors && errors.size) { %>
                <p class="errorStyle"> <%= errors.size.msg %> </p>
@@ -57,18 +56,27 @@
             <% } %>
             <div class="createBenefits">
                <label for="fees">Cuotas</label>
-               <input type="number" name="fees" id="fees" value="<%= locals.oldData ? oldData.fees : null %>">
+               <select name="fees" id="fees">
+                  <option value=""> Elegí </option>
+                  <% fees.forEach(fee => { %>
+                     <option value="<%= fee.id %> " <%= locals.oldData && oldData.fees == fee.id ? "selected" : null %>> <%= fee.number %> cuotas  </option>
+                  <% }) %>
+               </select>
                <% if (locals.errors && errors.fees) { %>
                   <p class="errorStyle"> <%= errors.fees.msg %> </p>
                <% } %>
                <label>Categoría</label>
                <select name="category">
                   <option value=""> Elegí </option>
-                  <option value="1" <%= locals.oldData && oldData.category == "visited" ? "selected" : null %>> Últimos visitados </option>
-                  <option value="2" <%= locals.oldData && oldData.category == "inSale" ? "selected" : null %>> En oferta </option>
-                  <option value="3" <%= locals.oldData && oldData.category == "featured" ? "selected" : null %>> Elegidos del mes </option>
-                  <option value="4" <%= locals.oldData && oldData.category == "general" ? "selected" : null %>> Productos </option>
+                  <% categories.forEach(category => { %>
+                     <option value="<%= category.id %> " <%= locals.oldData && oldData.category == category.id ? "selected" : null %>> <%= category.name %> </option>
+                  <% }) %>
                </select>
+                  <!-- <option value="1" <%#= locals.oldData && oldData.category == "1" ? "selected" : null %>> Últimos visitados </option>
+                  <option value="2" <%#= locals.oldData && oldData.category == "2" ? "selected" : null %>> En oferta </option>
+                  <option value="3" <%#= locals.oldData && oldData.category == "3" ? "selected" : null %>> Elegidos del mes </option>
+                  <option value="4" <%#= locals.oldData && oldData.category == "4" ? "selected" : null %>> Productos </option>
+               </select> -->
                <% if (locals.errors && errors.category) { %>
                   <p class="errorStyle"> <%= errors.category.msg %> </p>
                <% } %>

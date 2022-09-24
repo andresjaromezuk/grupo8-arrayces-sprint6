@@ -16,10 +16,16 @@ const productEditValidation = require('../middleware/productEditValidation')
 /* router.get('/', productController.index) */
 
 /* Creamos la ruta hacia todos los productos */
-/* router.get('/allProducts', productController.index) */
+router.get('/allProducts', productController.index)
 
 /* Creamos la ruta hacia el detalle de un producto */
-/* router.get('/detail/:id', productController.detail) */ //armamos ruta parametrizada
+router.get('/detail/:id', productController.detail) ///armamos ruta parametrizada
+
+/* Creamos la ruta para buscar productos */
+router.get('/search', productController.search)
+
+/* Creamos la ruta para filtrar productos */
+router.get('/filter', productController.filter)
 
 /* Creamos la ruta hacia formulario de creación */
 router.get('/create', /* adminMiddleware, */ productController.create)
@@ -27,11 +33,11 @@ router.get('/create', /* adminMiddleware, */ productController.create)
 router.post('/', upload.array('image'), productCreateValidation, productController.store);
 
 /* Creamos la ruta hacia formulario de edición */
-/* router.get('/edit/:id', adminMiddleware, productController.edit); */
+router.get('/edit/:id', /* adminMiddleware, */ productController.edit);
 /* Ruta para editar los datos de producto */
-/* router.put('/edit/:id', upload.array('image'), productEditValidation, productController.update); */
+router.put('/edit/:id', upload.array('image'), productEditValidation, productController.update);
 
 /* Ruta para eliminar producto */
-/* router.delete('/delete/:id', adminMiddleware, productController.destroy); */
+router.delete('/delete/:id', /* adminMiddleware, */ productController.destroy);
 
 module.exports = router; 

@@ -14,9 +14,9 @@
         <section class="visitedProducts">
             <h2>Últimos visitados</h2>
             <div class="products">
-                <% productos.forEach(producto => { %>
-                    <% if (producto.category==="visited") { %>
-                        <%- include('../partials/article.ejs',{producto}) %> 
+                <% products.forEach(product => { %>
+                    <% if (product.Category.name==="visited") { %>
+                        <%- include('../partials/article.ejs',{product}) %> 
                     <% } %>
                 <% }) %>
             </div>

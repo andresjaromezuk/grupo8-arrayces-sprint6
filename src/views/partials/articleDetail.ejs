@@ -1,20 +1,20 @@
 <section class="productDetailSection">
-    <p class="productDetailName">Productos / Plantas / <strong><%= producto.name %> </strong></p>
+    <p class="productDetailName">Productos / Plantas / <strong><%= product.name %> </strong></p>
     <div class="productDetail">
         <figure class="productImage">
             <div class="smallImages">
-                <img src="/images/<%= producto.image[0] %>" alt="Planta" class="default">
-                <img src="/images/<%= producto.image[1] %>" alt="Encuadre hoja">
+                <img src="/images/<%= product.Images[0].name %>" alt="Planta" class="default">
+                <img src="/images/<%= product.Images[1].name %>" alt="Encuadre hoja">
             </div>
             <div class="bigImage">
-                <img src="/images/<%= producto.image[0] %>" alt="Planta">
+                <img src="/images/<%= product.Images[0].name %>" alt="Planta">
             </div>
         </figure>
         <div class="productDetailInfo">
-            <h3 class="productDetailTitle"><%= producto.name %></h3>
-            <p class="productDetailPrice">$<%= producto.price %></p>
+            <h3 class="productDetailTitle"><%= product.name %></h3>
+            <p class="productDetailPrice">$<%= product.price %></p>
             <div class="payment">
-                <p>6 cuotas sin interés de <strong>$<%= producto.fees %></strong></p>
+                <p>6 cuotas sin interés de <strong>$<%= product.fees %></strong></p>
                 <a href=""><p class="method">Ver medios de pago</p></a>
             </div>
             <form class="productDetailDescription">
@@ -47,20 +47,20 @@
                 </div>  
             </form>
             <div class="productDescription">
-                <h4> Te contamos más sobre <%= producto.name%> </h4>
-                <p> <%= producto.description%></p> 
+                <h4> Te contamos más sobre <%= product.name%> </h4>
+                <p> <%= product.description%></p> 
             </div>
-            <% if (locals.userLogged && locals.userLogged.admin == true) { %>
+            <%# if (locals.userLogged && locals.userLogged.admin == true) { %>
                 <div class="adminButtons">
-                    <form action="/products/edit/<%= producto.id %>" method="get">
+                    <form action="/products/edit/<%= product.id %>" method="get">
                         <button type="submit">EDITAR</button>
                     </form>
                 <!-- <a href="/products/edit/<%#= producto.id %>"> EDITAR PRODUCTO</a> -->  
-                    <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="post">
+                    <form action="/products/delete/<%= product.id %>?_method=DELETE" method="post">
                         <button type="submit">ELIMINAR</button>
                     </form>
                 </div>
-            <% } %>
+            <%# } %>
         </div>
     </div>
     <div class="productDetailData">

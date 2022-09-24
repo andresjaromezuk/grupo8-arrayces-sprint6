@@ -6,7 +6,7 @@ const cookies= require('cookie-parser')
 /* const userLoggedMiddleware = require('./middleware/userLoggedMiddleware') */
 
 //requerimos nuestras rutas 
-/* const mainRoutes= require("./routes/mainRoutes") */
+const mainRoutes= require("./routes/mainRoutes")
 const productRoutes= require("./routes/productRoutes")
 /* const userRoutes= require("./routes/userRoutes") */
 
@@ -44,7 +44,7 @@ app.use(cookies())
 /* app.use(userLoggedMiddleware) */
 
 // habilitamos las rutas
-/* app.use("/", mainRoutes) */
+app.use("/", mainRoutes)
 app.use("/products", productRoutes)
 /* app.use("/users", userRoutes) */
 
