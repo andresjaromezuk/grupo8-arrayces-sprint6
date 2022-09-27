@@ -11,16 +11,13 @@
         <div class="datos">
             <div class="loginDatos">
                 <div class="inReg"> 
-                    <h4>  Inicio /  <strong>  Registro </strong></h4>
+                    <h4>  Inicio /  <strong> Editar perfil  </strong></h4>
                 </div>
                 <div class="loginCon">
-                    <h2>Registrate</h2>
-
-                    <%- include('../partials/buttonSN.ejs') %> 
-                    
+                    <h2>Editar perfil</h2>
                 </div>
                 <div class="register">
-                    <form action="/users/register" method="POST" class="registerForm" enctype="multipart/form-data">
+                    <form action="/users/edit?_method=put" method="POST" class="registerForm" enctype="multipart/form-data">
                         <div class="avatar">
                             <label for="avatar"> Imagen de perfil </label>
                             <input type="file" name="avatar" id="avatar" placeholder="Imagen de perfil" multiple >
@@ -31,7 +28,7 @@
                         <div>
                             <input type="text" name="firstName" id="firstName" 
                             placeholder="Nombre" minLength="2" 
-                            value="<%= locals.oldData ? oldData.firstName : null %>">
+                            value="<%= locals.oldData ? oldData.firstName : locals.userLogged.firstName %>">
                             <% if (locals.errors && errors.firstName) { %>
                                 <p class="errorStyle"> <%= errors.firstName.msg %> </p>
                             <% } %>
@@ -40,7 +37,7 @@
                         <div>
                             <input type="text" name="lastName" id="lastName" 
                             placeholder="Apellido" minLength="2" 
-                            value="<%= locals.oldData ? oldData.lastName : null %>">
+                            value="<%= locals.oldData ? oldData.lastName : locals.userLogged.lastName %>">
                             <% if (locals.errors && errors.lastName) { %>
                                 <p class="errorStyle"> <%= errors.lastName.msg %> </p>
                             <% } %>
@@ -49,7 +46,7 @@
                         <div>
                             <input type="text" name="userName" id="userName" 
                             placeholder="Nombre de usuario"  
-                            value="<%= locals.oldData ? oldData.userName : null %>">
+                            value="<%= locals.oldData ? oldData.userName : locals.userLogged.userName %>">
                             <% if (locals.errors && errors.userName) { %>
                                 <p class="errorStyle"> <%= errors.userName.msg %> </p>
                             <% } %>
@@ -58,30 +55,17 @@
                         <div>
                             <input type="email" name="email" id="email" 
                             placeholder="Correo electrónico" 
-                            value="<%= locals.oldData ? oldData.email : null %>">
+                            value="<%= locals.oldData ? oldData.email : locals.userLogged.email %>">
                             <% if (locals.errors && errors.email) { %>
                                 <p class="errorStyle"> <%= errors.email.msg %> </p>
                             <% } %>
                             <!-- <div class="feedback"></div> -->
                         </div>
-                        <div>
-                            <input type="password" name="password" id="password" placeholder="Contraseña"></input>
-                            <% if (locals.errors && errors.password) { %>
-                                <p class="errorStyle"> <%= errors.password.msg %> </p>
-                            <% } %>
-                            <!-- <div class="feedback"></div> -->
-                        </div>
-                        <div>
-                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmar contraseña" ></input>
-                            <% if (locals.errors && errors.confirmPassword) { %>
-                                <p class="errorStyle"> <%= errors.confirmPassword.msg %> </p>
-                            <% } %>
-                            <!-- <div class="feedback"></div> -->
-                        </div>
+                
 
                         <%- include('../partials/reCaptcha.ejs') %> 
                         
-                        <button class="crearCuenta"> Crear cuenta </button>
+                        <button class="crearCuenta"> Guardar cambios</button>
                     </form>   
                     <p class="yaTenesCuenta"> <a href="/users/login">¿Ya tienes cuenta? Iniciar sesión</a></p>
                 </div>  

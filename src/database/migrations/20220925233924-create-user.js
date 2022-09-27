@@ -29,6 +29,9 @@ module.exports = {
       confirmPassword: {
         type: Sequelize.STRING
       },
+      token: {
+        type: Sequelize.STRING
+      },
       roleId: {
         type: Sequelize.INTEGER,
         references: {

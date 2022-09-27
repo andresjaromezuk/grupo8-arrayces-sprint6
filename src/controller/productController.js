@@ -248,7 +248,16 @@ const productController = {
                     break
             }
             
-        }   
+        } else{
+            try {
+                let products = await Product.findAll({include})
+                let type = await Type.findAll()
+                return res.render("products/allProducts", {products, type})
+            } catch (error) {
+               res.json(error) 
+            }
+
+        }
     },
 
     edit: async (req, res) => {

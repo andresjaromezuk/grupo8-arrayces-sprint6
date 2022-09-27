@@ -1,5 +1,6 @@
-/* const jsonDB = require('../model/jsonDatabase');
-const userModel = jsonDB('users');
+const {User, Role} = require('../database/models')
+
+
 const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
@@ -15,7 +16,7 @@ const userController = {
         res.render("users/register")
     },
 
-    processRegister: function(req, res){
+    processRegister: async (req, res)=> {
         let file = req.file
         console.log(file)
         
@@ -24,76 +25,194 @@ const userController = {
         console.log(errors)
         
         if(!errors.isEmpty()){
-            let filePath = path.join(__dirname, '../../public/images/users/' + file.filename)
-            fs.unlinkSync(filePath)
+            if(file){
+                let filePath = path.join(__dirname, '../../public/images/users/' + file.filename)
+                fs.unlinkSync(filePath)
+            }
 
             return res.render('users/register', {
                 errors : errors.mapped(),
                 oldData : req.body,
             })
 
-        } else {
+        }
+        
+            try {
+                let userToFind = await User.findOne({
+                    where: {
+                        email: req.body.email
+                    }
+                }) 
+    
+                if(userToFind){
+                    return res.render('users/register', {
+                        errors:{
+                            email:{
+                                msg: 'Este mail ya corresponde a un usuario registrado'
+                            }
+                        },
+                        oldData : req.body} )
+                }
+            } catch (error) {
+                res.json(error)
+            }
 
-            let userToFind = userModel.findFirstByField("email", req.body.email)
+            let {firstName, lastName, userName, email, password, confirmPassword} = req.body
 
-            if(userToFind){
-                return res.render('users/register', {
+            let newUser = {
+                firstName,
+                lastName,
+                userName,
+                email,
+                password: bcrypt.hashSync(password, 10),
+                confirmPassword: bcrypt.hashSync(confirmPassword, 10),
+                avatar: file ? file.filename : "avatar-default-image.jpg",
+                token: bcrypt.hashSync(String(Date.now()), 10)
+            }
+
+            try {
+                await User.create(newUser)
+            } catch (error) {
+                res.json(error)
+            }
+
+            res.redirect('/users/login')
+        
+    },
+
+    processLogin: async function(req, res) {
+
+        console.log(req.body.password)
+    
+        try {
+            let userToLogin = await User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            }) 
+
+            
+
+            if (!userToLogin) {
+                return res.render('users/login', {
                     errors:{
                         email:{
-                            msg: 'Las credenciales no son válidas'
+                            msg: 'No se encuentra el usuario'
                         }
                     }
                 })
             }
 
-            let newUser = {
-                ...req.body,
-                password: bcrypt.hashSync(req.body.password, 10),
-                confirmPassword: bcrypt.hashSync(req.body.confirmPassword, 10),
-                image: file ? file.filename : "avatar-default-image.jpg",
-                token: bcrypt.hashSync(String(Date.now()), 10)
+           
+
+            if(!bcrypt.compareSync(req.body.password, userToLogin.password)){
+                return res.render('users/login', {
+                    errors:{
+                        password:{
+                            msg: 'Alguno de los datos ingresados es incorrecto'
+                        }
+                    }
+                })
+            } 
+
+            delete userToLogin.password
+            delete userToLogin.confirmPassword
+            req.session.userLogged = userToLogin
+
+            /* console.log('Este es elusuario que se guardó en session:')
+            console.log(req.session.userLogged) */
+            
+            if(req.body.rememberMe){
+                res.cookie("token", userToLogin.token,  {maxAge: 1000*60*60*24})
             }
-
-            userModel.create(newUser)
-
-            res.redirect('/users/login')
+    
+            res.redirect('/users/profile')
+    
+            
+        } catch (error) {
+            res.json(error)
         }
+        
+        
     },
 
-    processLogin: function(req, res) {
+    edit:  (req, res) => {
+        return res.render('users/userEdit',)
+    },
 
-        console.log(req.body.password)
-        let userToLogin = userModel.findFirstByField("email", req.body.email)
+    update: async (req, res) => {
+
+        let file = req.file
+        console.log(file)
         
-        if (!userToLogin) {
-            return res.render('users/login', {
-                errors:{
-                    email:{
-                        msg: 'No se encuentra el usuario'
-                    }
-                }
+        const errors = validationResult(req)
+
+        console.log(errors)
+        
+        if(!errors.isEmpty()){
+            if(file){
+                let filePath = path.join(__dirname, '../../public/images/users/' + file.filename)
+                fs.unlinkSync(filePath)
+            }
+
+            return res.render('users/userEdit', {
+                errors : errors.mapped(),
+                oldData : req.body,
             })
+
         }
 
-        if(!bcrypt.compareSync(req.body.password, userToLogin.password)){
-            return res.render('users/login', {
-                errors:{
-                    password:{
-                        msg: 'Alguno de los datos ingresados es incorrecto'
-                    }
+        let {firstName, lastName, userName, email} = req.body
+
+        let userInSession = req.session.userLogged
+
+        console.log('este es el usuario en sesión:')
+        console.log(userInSession)
+
+        let userRegistered
+
+        try {
+            userRegistered = await User.findOne({
+                where:{
+                    email: userInSession.email
                 }
             })
-        } 
-        delete userToLogin.password
-        delete userToLogin.confirmPassword
-        req.session.userLogged = userToLogin
-        console.log(req.session.userLogged)
-        
-        if(req.body.rememberMe){
-            res.cookie("token", userToLogin.token,  {maxAge: 1000*60*60*24})
+        } catch (error) {
+            res.json(error)
         }
 
-        res.redirect('/users/profile')
+        let userToUpdate = {
+            firstName,
+            lastName,
+            userName,
+            email,
+            password: userRegistered.password,
+            confirmPassword: userRegistered.confirmPassword,
+            avatar: file ? file.filename : userRegistered.avatar,
+            token: userRegistered.token
+        }
+
+        try {
+            await User.update(userToUpdate, {
+                where: {
+                    email: userRegistered.email
+                }
+            })
+
+            let userUpdated = await User.findOne({
+                where:{
+                    email: userInSession.email
+                }
+            })
+
+            delete userUpdated.password
+            delete userUpdated.confirmPassword
+            req.session.userLogged = userUpdated
+
+            return res.redirect('/users/profile')
+        } catch (error) {
+            res.json(error)
+        }
 
     },
 
@@ -115,4 +234,3 @@ const userController = {
 }
 
 module.exports = userController
- */

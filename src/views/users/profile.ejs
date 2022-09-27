@@ -5,11 +5,12 @@
 
     <%- include('../partials/header.ejs') %> 
     <main class="userProfile">
+        <% console.log('El usuario en local es:') %> 
         <%console.log(locals.userLogged)%>
         <h1 class="userWelcome"> ¡Hola <strong><%= locals.userLogged.userName %></strong>!</h1>
         <div class="userInfo">
             <figure class="userAvatar">
-                <img src="/images/users/<%= locals.userLogged.image %>" alt="Imagen de perfil">
+                <img src="/images/users/<%= locals.userLogged.avatar %>" alt="Imagen de perfil">
             </figure>
             <div class="userData">
                 <p class="infoTitle">Información de usuario</p>
@@ -21,6 +22,7 @@
                     <p class="dataTitle">Email</p>
                     <p class="userEmail"> <%= locals.userLogged.email %></p>
                 </div>
+                <a href="/users/edit"><button class="profileButton">Editar perfil</button></a>
             </div>
         </div>
     </main>
@@ -29,5 +31,6 @@
     <%- include('../partials/footer.ejs') %> 
     
 </footer>
+    <script src="/js/header.js"> </script>
 </body>
 </html>

@@ -7,7 +7,15 @@
         <div class="description"> 
             <h3 class="name"><%= product.name %></h3>
             <p class="price">$ <%= product.price %></p>
-            <p class="fee">Hasta  <strong> <%= product.Fee.number %> cuotas sin interés</strong></p>
+            <% if (product.Fee.number > 1) { %>
+                <p class="fee">
+                    <strong> <%= product.Fee.number %> cuotas sin interés de
+                        <span class="feeDivision">$<%= (product.price/product.Fee.number).toFixed() %></span> 
+                    </strong>
+                </p>
+            <% } else { %>
+                <p class="fee"> Pago al contado</p>
+            <% } %>
         </div>
     </a>
 </article>

@@ -3,12 +3,12 @@ const express = require('express')
 const path= require ('path')
 const session = require('express-session')
 const cookies= require('cookie-parser')
-/* const userLoggedMiddleware = require('./middleware/userLoggedMiddleware') */
+const userLoggedMiddleware = require('./middleware/userLoggedMiddleware')
 
 //requerimos nuestras rutas 
 const mainRoutes= require("./routes/mainRoutes")
 const productRoutes= require("./routes/productRoutes")
-/* const userRoutes= require("./routes/userRoutes") */
+const userRoutes= require("./routes/userRoutes")
 
 // guardamos en un constante app la funcionalidad de express()
 const app = express()
@@ -41,12 +41,12 @@ app.use(session({
 app.use(cookies())
 
 // habilitamos middleware de sesión
-/* app.use(userLoggedMiddleware) */
+app.use(userLoggedMiddleware)
 
 // habilitamos las rutas
 app.use("/", mainRoutes)
 app.use("/products", productRoutes)
-/* app.use("/users", userRoutes) */
+app.use("/users", userRoutes)
 
 // definimos el puerto en el que se va a levantar el servidor con variable de entorno
 const port = process.env.PORT || 3000

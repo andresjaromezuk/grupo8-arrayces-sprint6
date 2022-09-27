@@ -1,27 +1,43 @@
-const jsonDB = require('../model/jsonDatabase');
-const userModel = jsonDB('users');
+const {User} = require('../database/models')
 
-function  userLoggedMiddleware (req, res, next) {
-
-    res.locals.isLogged = false
-
-    const userCookie= req.cookies.token
-    const userFromCookie = userModel.findFirstByField("token", userCookie) 
-
-    if(userFromCookie){
+/* async */ function userLoggedMiddleware (req, res, next) {
         
-        delete userFromCookie.password
-        delete userFromCookie.confirmPassword
-        req.session.userLogged = userFromCookie
-        console.log (userFromCookie)
-    }
+       /*  try { */
 
-    if(req.session.userLogged){
-        res.locals.isLogged = true
-        res.locals.userLogged = req.session.userLogged
-    }
+            res.locals.isLogged = false
+    
+           /*  let userFromCookie = await User.findOne({
+            where: {
+                token: req.cookies.token
+            }
+        })  */
+        
+        /* if(userFromCookie){
+        
+            delete userFromCookie.password
+            delete userFromCookie.confirmPassword
+            req.session.userLogged = userFromCookie
 
-    next()
+            console.log ('-----------------')
+            console.log ('-----------------')
+            console.log ('-----------------')
+            console.log (userFromCookie)
+        } */
+
+        if(req.session.userLogged){
+            res.locals.isLogged = true
+            res.locals.userLogged = req.session.userLogged
+        }
+    
+        next()
+            
+       /*  } catch (error) {
+            res.json(error)
+        } */
+    
+    /* userModel.findFirstByField("token", userCookie)  */
+
+    
 }
 
 module.exports = userLoggedMiddleware

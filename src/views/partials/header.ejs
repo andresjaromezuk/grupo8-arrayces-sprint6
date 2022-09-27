@@ -21,7 +21,9 @@
             <li><a href="/products/allProducts">Productos</a></li>
             <li><a href="#">Tips y cuidados</a></li>
             <li><a href="#">Envíos</a></li>
-            <!-- <li><a href="/products/create">Admin</a></li> -->
+            <% if (locals.isLogged) { %>
+                <li><a href="/products/create">Crear producto</a></li>
+            <% } %> 
         </ul>
         <ul class="navLogin">
             <% if (locals.isLogged) { %>
@@ -31,6 +33,28 @@
                 <li><a href="/users/register">Crear cuenta</a></li>
                 <li><a href="/users/login">Iniciar sesión</a></li>
             <% } %> 
+        </ul>
+    </nav>
+
+    <nav class="burgerNav">
+        <ul class="burgerNavI">
+            <li><form class="bugerForm" action="/products/search" method="GET">
+                <input class="burgerInput" name="keyword" placeholder="Buscar">
+                <button class="burgerSubmit"><span class="material-symbols-outlined">search</span></button>
+            </form></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="">Quiénes somos</a></li>
+            <li><a href="/products/allProducts">Productos</a></li>
+            <li><a href="">Tips y cuidados</a></li>
+            <li><a href="">Envíos</a></li>
+            <div class="burgerLine"></div>
+            <% if (locals.isLogged) { %>
+                <li><a href="/users/profile"> Perfil </a></li>
+                <li><a href="/users/logout"> Cerrar Sesión </a></li>
+            <% } else { %> 
+                <li><a href="/users/register">Crear cuenta</a></li>
+                <li><a href="/users/login">Iniciar sesión</a></li>
+            <% } %>   
         </ul>
     </nav>
 </header>

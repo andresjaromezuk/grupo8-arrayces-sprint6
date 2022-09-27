@@ -7,6 +7,14 @@
 
 /* --------------HEADER-------------- */
 
+header{
+    left:0;
+    position: fixed;
+    right: 0;
+    z-index:15;
+    top:0;
+}
+
 div.topHeader form {
     display: none;
 }
@@ -55,6 +63,89 @@ div.shoppingBag a:visited{
 div.shoppingBag a:link{
     color: #0f372c;
 }
+
+/* --------------ESTILO BUGER MENU-------------- */
+.burgerNavI{
+    display: block;
+    background-color: #d3d68f;
+    color: #0f372c;
+    font-weight: 600;
+    width: 50%;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    position:  fixed;
+    z-index: 20;
+    height: 70%;
+    left: -500px;
+}
+
+.burgerNavI.active{
+    left:0
+}
+
+.burgerNav ul li{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    transition: font-weight 600ms;
+    
+}
+
+.burgerNav ul li:hover{
+    font-weight: 700;
+}
+
+.burgerNav ul li a:visited{
+    text-decoration: none;
+    color:#0f372c;
+}
+
+
+.burgerLine{
+    
+    border-bottom: 1px solid #0f372c;
+    opacity: 0.5;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.burgerNavI form {
+    display: flex;
+    width: 70%;
+    max-width: 250px;
+    border: solid 2px rgba(15, 55, 44, 0.5);
+    border-radius: 18px;
+    margin-left: 10px;
+    padding: 0px 10px;
+}
+
+.burgerNavI input{
+    font-size: 14px;
+    padding: 8px 10px;
+    color: #0f372c;
+    border: none;
+    background-color: #d3d68f;
+    border-radius: 20px;
+    width: 90%;
+    outline: none;
+}
+
+.burgerNavI input:focus{
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.burgerNavI button{
+    background-color: transparent;
+    border: none;
+}
+
+.burgerNavI input::placeholder{
+    color: #0f372c;
+}
+
 
 /* --------------FOOTER-------------- */
 
@@ -171,6 +262,27 @@ figure.footerIsoMobile img{
 
 /* -------------- INDEX -------------- */
 
+/* Estilo de botón searchResult y filterResult */
+
+.searchResultButton{
+    text-align: center;
+}
+
+.searchResultButton button {
+    width: 10%;
+    padding: 7px;
+    font-weight: bold;
+    background-color:#0f372c;
+    color: #fff;
+    border: none;
+    transition: all 0.2s;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.searchResultButton button:hover {
+    background-color:  #9EAB5B;
+}
 /* slide */
 section.bannerPublicitario{
     width: 100%;
@@ -228,6 +340,7 @@ main section.productsView h2{
     margin: 25px auto;
     text-align: center;
     color: #0f372c;
+    padding-top: 20px;
 }
 
 
@@ -274,6 +387,10 @@ p.price{
 
 p.fee{
     color: #0f372c;
+}
+
+.feeDivision{
+    color:#d97873
 }
 
 
@@ -340,9 +457,10 @@ p.more{
 
 /* --------------ALL PRODUCTS-------------- */
 
+
 .filterForm {
     display: flex;
-    width: 50%;
+    width: 80%;
     max-width: 250px;
     border: solid 2px rgba(15, 55, 44, 0.5);
     border-radius: 20px;
@@ -353,6 +471,7 @@ p.more{
     align-items: center;
     height: 39px;
 }
+
 
 .filterForm input{
     font-size: 14px;
@@ -876,7 +995,7 @@ p.moreCart{
 /* --------------REGISTRO-------------- */
 
 main.userMain{
-    margin:20px 20px 20px 20px;
+    margin:80px 20px 20px 20px;
 }
 
 .inReg h4{
@@ -1320,7 +1439,7 @@ div.rememberCheckbok label{
 /* -------------- PROFILE -------------- */
 
 .userProfile{
-    margin: 20px 20px 80px 20px;
+    margin: 80px 20px 80px 20px;
 }
 
 .userWelcome{
@@ -1350,7 +1469,9 @@ div.rememberCheckbok label{
 .infoTitle{
     color: #0f372c;
     margin-bottom: 15px;
+    font-weight: bold;
 }
+
 
 .userName{
     color: #d97873;
@@ -1370,6 +1491,23 @@ div.rememberCheckbok label{
     color: #0f372c;
 }
 
+.profileButton{
+    margin-top: 30px;
+    width: 30%;
+    padding: 7px;
+    font-weight: bold;
+    background-color:#d97873;
+    color: #fff;
+    border: none;
+    transition: all 0.2s;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.profileButton button:hover {
+    background-color:  #9EAB5B;
+}
+
 
 /* --------------ESTILOS DE ERRORES DE VALIDACIÓN-------------- */
 
@@ -1384,6 +1522,12 @@ div.rememberCheckbok label{
 /* --------------MEDIA QUERY TABLETS-------------- */
 
 @media (min-width: 480px){
+
+    /* --------------ESTILO BURGER MENU-------------- */
+    .burgerNavI{
+        width: 35%;
+        
+    }
 
 	/* --------------HEADER-------------- */
 
@@ -1436,11 +1580,14 @@ div.rememberCheckbok label{
         text-align: left;
         display: inline;
         margin-left: 0px;
+        padding-top: 0;
+        margin-top: 50px;
     }
 
     .filterForm {
         justify-content: space-between;
         margin-right: 0px;
+        margin-top: 55px;
     }
 
 
@@ -1534,6 +1681,10 @@ div.rememberCheckbok label{
 
     /* --------------REGISTER-------------- */
 
+    main.userMain{
+        margin-top: 120px;
+    }
+
     .loginConGgFb span{
         display: inline;
         padding-left: 10px;
@@ -1577,12 +1728,39 @@ div.rememberCheckbok label{
 
 }
 
+/* -------------- PROFILE -------------- */
+
+.userProfile{
+    margin-top: 115px
+}
+
 
 /* --------------MEDIA QUERY MIN-WIDTH 796px-------------- */
 
 @media (min-width: 769px){
 
-    
+    /* --------------ESTILO BURGER MENU-------------- */
+    .burgerNavI{
+        width: 30%;
+        height: 85%; 
+        padding-left: 25px;
+    }
+
+    .burgerNav ul li{
+        margin-bottom: 20px;
+        
+    }
+
+    /* --------------ALL PRODUCTS-------------- */
+
+    .filterForm {
+        margin-top: 70px;
+    }
+
+    main section.productsView h2.titleAllProducts{
+        font-size: 32px;
+    }
+
     /* --------------PRODUCT DETAIL-------------- */
 
     .productDetail{
@@ -1666,7 +1844,7 @@ div.rememberCheckbok label{
     /* --------------REGISTER-------------- */
 
     main.userMain{
-        margin:20px 40px 20px 40px;
+        margin:130px 40px 20px 40px;
     }
 
     .loginConGgFb{
@@ -1796,6 +1974,15 @@ div.rememberCheckbok label{
 
 }
 
+/* -------------- PROFILE -------------- */
+
+.userProfile{
+    margin: 130px 20px 80px 20px;
+}
+.userWelcome{
+    text-align: center;
+}
+
 
 /* --------------MEDIA QUERY PARA NAVEGACION EN DESKTOP-------------- */
 
@@ -1916,6 +2103,12 @@ div.rememberCheckbok label{
         color: #0f372c;
         text-decoration: none;
         display: inline;
+    }
+
+    /* --------------ESTILO BURGER MENU -------------- */
+
+    .burgerNavI{
+        display: none
     }
 
 
@@ -2133,6 +2326,12 @@ div.rememberCheckbok label{
 
 
     /* -------------- PROFILE -------------- */
+
+
+
+    .userWelcome{
+        text-align: left;
+    }
 
     .userInfo{
         display: flex;
