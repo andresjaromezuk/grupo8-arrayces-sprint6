@@ -5,6 +5,7 @@
 
     <%- include('../partials/header.ejs') %> 
     <main class="userProfile">
+        <% console.log('----------------------------') %> 
         <% console.log('El usuario en local es:') %> 
         <%console.log(locals.userLogged)%>
         <h1 class="userWelcome"> ¡Hola <strong><%= locals.userLogged.userName %></strong>!</h1>

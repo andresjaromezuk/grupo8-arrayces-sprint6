@@ -341,6 +341,7 @@ const productController = {
                     id: id
                 }})
 
+
             let imagesProducts = [];
 
             files.forEach(image => {

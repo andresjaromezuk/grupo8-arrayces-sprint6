@@ -82,13 +82,16 @@ const userController = {
 
     processLogin: async function(req, res) {
 
-        console.log(req.body.password)
+        /* console.log(req.body.password) */
+
+        const include = ['Role']
     
         try {
             let userToLogin = await User.findOne({
                 where: {
                     email: req.body.email
-                }
+                },
+                include
             }) 
 
             
@@ -119,8 +122,8 @@ const userController = {
             delete userToLogin.confirmPassword
             req.session.userLogged = userToLogin
 
-            /* console.log('Este es elusuario que se guardó en session:')
-            console.log(req.session.userLogged) */
+            console.log('Este es elusuario que se guardó en session:')
+            console.log(req.session.userLogged)
             
             if(req.body.rememberMe){
                 res.cookie("token", userToLogin.token,  {maxAge: 1000*60*60*24})

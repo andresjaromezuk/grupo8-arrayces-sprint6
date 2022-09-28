@@ -1,28 +1,23 @@
 const {User} = require('../database/models')
 
-/* async */ function userLoggedMiddleware (req, res, next) {
+async function userLoggedMiddleware (req, res, next) {
         
-       /*  try { */
-
             res.locals.isLogged = false
+
+            const userFromCookie = await User.findOne({
+                where: {
+                    token: req.cookies.token || " "
+                }
+            })
     
-           /*  let userFromCookie = await User.findOne({
-            where: {
-                token: req.cookies.token
-            }
-        })  */
         
-        /* if(userFromCookie){
+        if(userFromCookie){
         
             delete userFromCookie.password
             delete userFromCookie.confirmPassword
             req.session.userLogged = userFromCookie
 
-            console.log ('-----------------')
-            console.log ('-----------------')
-            console.log ('-----------------')
-            console.log (userFromCookie)
-        } */
+        }
 
         if(req.session.userLogged){
             res.locals.isLogged = true
@@ -31,11 +26,7 @@ const {User} = require('../database/models')
     
         next()
             
-       /*  } catch (error) {
-            res.json(error)
-        } */
     
-    /* userModel.findFirstByField("token", userCookie)  */
 
     
 }

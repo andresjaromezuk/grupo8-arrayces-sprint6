@@ -14,7 +14,14 @@
             <h3 class="productDetailTitle"><%= product.name %></h3>
             <p class="productDetailPrice">$<%= product.price %></p>
             <div class="payment">
-                <p>6 cuotas sin interés de <strong>$<%= product.fees %></strong></p>
+                <% if (product.Fee.number > 1) { %>
+                    <p class="fee">
+                        <%= product.Fee.number %> cuotas sin interés de <span class="feeDivision">$<%= (product.price/product.Fee.number).toFixed() %></span> 
+                        
+                    </p>
+                <% } else { %>
+                    <p class="fee"> Pago al contado</p>
+                <% } %>
                 <a href=""><p class="method">Ver medios de pago</p></a>
             </div>
             <form class="productDetailDescription">
@@ -50,7 +57,8 @@
                 <h4> Te contamos más sobre <%= product.name%> </h4>
                 <p> <%= product.description%></p> 
             </div>
-            <%# if (locals.userLogged && locals.userLogged.admin == true) { %>
+            
+            <% if (locals.userLogged && locals.userLogged.roleId == 1) { %>
                 <div class="adminButtons">
                     <form action="/products/edit/<%= product.id %>" method="get">
                         <button type="submit">EDITAR</button>
@@ -60,7 +68,7 @@
                         <button type="submit">ELIMINAR</button>
                     </form>
                 </div>
-            <%# } %>
+            <% } %>
         </div>
     </div>
     <div class="productDetailData">

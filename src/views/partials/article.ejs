@@ -9,9 +9,8 @@
             <p class="price">$ <%= product.price %></p>
             <% if (product.Fee.number > 1) { %>
                 <p class="fee">
-                    <strong> <%= product.Fee.number %> cuotas sin interés de
-                        <span class="feeDivision">$<%= (product.price/product.Fee.number).toFixed() %></span> 
-                    </strong>
+                    <%= product.Fee.number %> cuotas sin interés de <span class="feeDivision">$<%= (product.price/product.Fee.number).toFixed() %></span> 
+                    
                 </p>
             <% } else { %>
                 <p class="fee"> Pago al contado</p>
