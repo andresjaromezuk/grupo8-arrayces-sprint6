@@ -1,5 +1,9 @@
 # Grupo8_Index7_Sprint6
-★ Archivo retro.md con el resultado de la retrospectiva. 
+
+★ Usuario ADMIN: emmet@arrayces.com ★ Contraseña: 123456
+
+★ [Trello](https://trello.com/b/rV7zv3I4/grupo8index7a-rrayces)  
+
 
 ## RETROSPECTIVA 🔁:
 
@@ -43,4 +47,4 @@ Incorporamos una nueva integrante al equipo de desarrollo.
 - Esperar a finalizar el sprint para subirlo a gitHub.
 
 
---- 
+
