@@ -101,7 +101,6 @@ div.shoppingBag a:link{
     color:#0f372c;
 }
 
-
 .burgerLine{
     
     border-bottom: 1px solid #0f372c;
@@ -283,9 +282,11 @@ figure.footerIsoMobile img{
 .searchResultButton button:hover {
     background-color:  #9EAB5B;
 }
+
 /* slide */
 section.bannerPublicitario{
     width: 100%;
+    margin-top: 61px;
     margin-bottom: 5%;
 }
 
@@ -296,7 +297,6 @@ section.bannerPublicitario figure img{
 figure.desktopBanner{
     display: none;
 }
-
 
 /* banner categorias */
 section.categories{
@@ -508,7 +508,7 @@ p.more{
 /* --------------PRODUCT DETAIL-------------- */
 
 main.productDetailMain{
-    margin:20px 20px 80px 20px;
+    margin:81px 20px 80px 20px;
 }
 
 .productDetailSection{
@@ -717,7 +717,7 @@ div.adminButtons button:hover{
 
 /* form */
 main.cartMain {
-    margin:20px 20px 20px 20px;
+    margin:81px 20px 20px 20px;
 }
 
 .cartForm{
@@ -995,7 +995,7 @@ p.moreCart{
 /* --------------REGISTRO-------------- */
 
 main.userMain{
-    margin:80px 20px 20px 20px;
+    margin:81px 20px 20px 20px;
 }
 
 .inReg h4{
@@ -1315,13 +1315,13 @@ div.rememberCheckbok label{
 /* --------------CREATE PRODUCT-------------- */
 
 .createMain{
-    margin: 20px 20px 20px 20px;
+    margin: 81px 20px 20px 20px;
     color:hsl(164, 57%, 14%);
 }
 
 .createMain h2{
     text-align: center;
-    margin-bottom: 35px 30px;  /* agregue 35px */
+    margin-bottom: 30px; 
 }
 
 .createForm{
@@ -1358,6 +1358,7 @@ div.rememberCheckbok label{
 
 .createForm button {
     margin-top: 30px;
+    margin-bottom: 30px;
     color: #fff;
     font-weight: 600;
     font-size:18px ;
@@ -1378,13 +1379,13 @@ div.rememberCheckbok label{
 /* --------------EDIT PRODUCT-------------- */
 
 .editMain{
-    margin: 20px 20px 20px 20px;
+    margin: 81px 20px 20px 20px;
     color:hsl(164, 57%, 14%);
 }
 
 .editMain h2{
     text-align: center;
-    margin-bottom: 35px 30px;
+    margin-bottom: 30px;
 }
 
 .editForm{
@@ -1419,6 +1420,7 @@ div.rememberCheckbok label{
 
 .editForm button {
     margin-top: 30px;
+    margin-bottom: 30px;
     color: #fff;
     font-weight: 600;
     font-size:18px ;
@@ -1438,8 +1440,8 @@ div.rememberCheckbok label{
 
 /* -------------- PROFILE -------------- */
 
-.userProfile{
-    margin: 80px 20px 80px 20px;
+main.userProfile{
+    margin: 81px 20px 80px 20px;
 }
 
 .userWelcome{
@@ -1493,7 +1495,7 @@ div.rememberCheckbok label{
 
 .profileButton{
     margin-top: 30px;
-    width: 30%;
+    width: 40%;
     padding: 7px;
     font-weight: bold;
     background-color:#d97873;
@@ -1508,6 +1510,12 @@ div.rememberCheckbok label{
     background-color:  #9EAB5B;
 }
 
+
+/* -------------- EDIT PROFILE -------------- */
+
+button.saveChanges {
+    
+}
 
 /* --------------ESTILOS DE ERRORES DE VALIDACIÓN-------------- */
 
@@ -1567,6 +1575,10 @@ div.rememberCheckbok label{
         width: 48%;
     }
 
+    section.bannerPublicitario{
+        margin-top: 100px;
+    }
+
 
     /* --------------ALL PRODUCT-------------- */
 
@@ -1574,6 +1586,10 @@ div.rememberCheckbok label{
         display: flex;
         justify-content: space-between;
         width: 100%;
+    }
+
+    main section.productsView {
+        margin-top: 100px;
     }
 
     main section.productsView h2.titleAllProducts{
@@ -1592,6 +1608,10 @@ div.rememberCheckbok label{
 
 
     /* --------------PRODUCT DETAIL-------------- */
+
+    main.productDetailMain{
+        margin-top: 125px;
+    }
 
     .productImage{
         display: flex;
@@ -1726,13 +1746,36 @@ div.rememberCheckbok label{
         width: 35%;
     }
 
+    
+    /* -------------- PROFILE -------------- */
+    
+    main.userProfile{
+        margin-top: 130px;
+    }
+
+
+    /* -------------- EDIT PRODUCT -------------- */
+
+    main.editMain{
+        margin-top: 130px;
+    }
+
+
+    /* -------------- CREATE PRODUCT -------------- */
+
+    main.createMain{
+        margin-top: 130px;
+    }
+
+
+    /* -------------- CARRITO -------------- */
+
+    main.cartMain{
+        margin-top: 130px;
+    }
+
 }
 
-/* -------------- PROFILE -------------- */
-
-.userProfile{
-    margin-top: 115px
-}
 
 
 /* --------------MEDIA QUERY MIN-WIDTH 796px-------------- */
@@ -2201,6 +2244,10 @@ div.rememberCheckbok label{
 
 
     /* --------------INDEX-------------- */
+
+    section.bannerPublicitario{
+
+    }
 
     main section div.products article{
         width: 22%;
