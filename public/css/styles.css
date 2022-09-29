@@ -1511,11 +1511,7 @@ main.userProfile{
 }
 
 
-/* -------------- EDIT PROFILE -------------- */
 
-button.saveChanges {
-    
-}
 
 /* --------------ESTILOS DE ERRORES DE VALIDACIÓN-------------- */
 
@@ -1855,7 +1851,7 @@ button.saveChanges {
         justify-content: space-between;
         margin-left: 65px;
         margin-right: 65px;
-        margin-top: 35px;
+        margin-top: 120px;
         margin-bottom: 35px;
     }
 
@@ -2245,9 +2241,6 @@ button.saveChanges {
 
     /* --------------INDEX-------------- */
 
-    section.bannerPublicitario{
-
-    }
 
     main section div.products article{
         width: 22%;
@@ -2446,7 +2439,7 @@ button.saveChanges {
     /* --------------PRODUCT CART-------------- */
 
     main.cartMain{
-        margin: 35px 100px 35px 100px ;
+        margin: 120px 100px 35px 100px ;
     }
 
     main  form .titleCart {
